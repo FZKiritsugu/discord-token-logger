@@ -3,11 +3,18 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net472</TargetFramework>
+    <AssemblyName>logger</AssemblyName>
+    <RootNamespace>logger</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Anarchy-wrapper" Version="0.8.1.2" />
     <PackageReference Include="Leaf.xNet" Version="5.2.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
 </Project>
