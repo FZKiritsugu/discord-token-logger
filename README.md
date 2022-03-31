@@ -14,6 +14,7 @@
 
 ## todo-list:
 - Discord Infection (message all dm's) (working, but will release soon!)
+- A GUI Builder
 
 # preview:
 
