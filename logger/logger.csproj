@@ -5,6 +5,14 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>logger</AssemblyName>
     <RootNamespace>logger</RootNamespace>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningLevel>3</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
