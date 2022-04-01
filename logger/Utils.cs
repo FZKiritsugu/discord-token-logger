@@ -111,7 +111,7 @@ namespace logger
                 }
 
                 archive.Dispose();
-                File.WriteAllBytes("fdsf.zip", stream.ToArray());
+                //File.WriteAllBytes("fdsf.zip", stream.ToArray());
                 return stream.ToArray();
 
             }
