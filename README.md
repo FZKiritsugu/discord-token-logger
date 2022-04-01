@@ -5,6 +5,8 @@
 - webhook - will send everything in a webhook, also has an backup webhook if the main dies
 - Password Stealer - will steal all the victim's passwords
 - Wallet stealer - Supports Exodus only RN
+- GUI builder
+- Discord SELF-SPREAD
 
 ## installation: 
 1. Export the project into a folder
@@ -13,8 +15,7 @@
 4. send the created file to the victim!
 
 ## todo-list:
-- Discord Infection (message all dm's) (working, but will release soon!)
-- A GUI Builder
+- Suggest Anything on my discord Server
 
 # preview:
 
