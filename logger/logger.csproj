@@ -4,24 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>logger</AssemblyName>
-    <RootNamespace>logger</RootNamespace>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <StartupObject />
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <WarningLevel>3</WarningLevel>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    <WarningLevel>3</WarningLevel>
-  </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Anarchy-wrapper" Version="0.8.1.2" />
     <PackageReference Include="Costura.Fody" Version="5.7.0">
@@ -30,11 +17,12 @@
     </PackageReference>
     <PackageReference Include="Leaf.xNet" Version="5.2.10" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+
 
 </Project>
