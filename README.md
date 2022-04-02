@@ -1,4 +1,5 @@
 
+
 ### features:
 - Screenshot taker - takes screenshot of all the victim's monitors
 - Token Log - Automatically detects working accounts and dropping details about them
@@ -20,3 +21,5 @@
 # preview:
 
 ![photo](https://cdn.discordapp.com/attachments/930947773849812993/945764862628339752/unknown.png)
+![download](https://img.shields.io/github/downloads/fknMega/discord-token-logger/total.svg)
+
