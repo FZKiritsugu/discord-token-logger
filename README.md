@@ -1,4 +1,4 @@
-
+Code looks very bad, I know, It's not that I make it for a professional company so idc 😂
 
 ### features:
 - Screenshot taker - takes screenshot of all the victim's monitors
